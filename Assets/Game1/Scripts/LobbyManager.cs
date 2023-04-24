@@ -2,10 +2,12 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using TMPro;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Button btnRoom, btnQuit;
+    [SerializeField] private TMP_InputField userNameIputFeild;
     void Start()
     {
         btnRoom.onClick.AddListener(JoinOrCreateRoom);
@@ -19,7 +21,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void JoinOrCreateRoom()
     {
-        PhotonNetwork.JoinRandomRoom();
+        if (userNameIputFeild.text.Length > 0)
+        {
+            PhotonNetwork.NickName = userNameIputFeild.text;
+            PhotonNetwork.JoinRandomRoom();
+        }
     }
     public override void OnJoinRandomFailed(short returnCode , string messege)
     {

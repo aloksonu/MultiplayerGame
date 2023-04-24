@@ -276,6 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnRoom: {fileID: 804577033}
   btnQuit: {fileID: 190069752}
+  userNameIputFeild: {fileID: 1601263627}
 --- !u!4 &231162005
 Transform:
   m_ObjectHideFlags: 0
