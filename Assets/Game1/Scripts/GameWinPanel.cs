@@ -11,6 +11,7 @@ public class GameWinPanel : MonoBehaviourPunCallbacks
     [SerializeField] private Button btnLeaveRoom;
     [SerializeField] private TextMeshProUGUI panelText;
     private float _fadeDuration = 0.2f;
+    private int winAppearCoundown;
 
      void Awake()
     {
@@ -20,6 +21,7 @@ public class GameWinPanel : MonoBehaviourPunCallbacks
     void Start()
     {
         btnLeaveRoom.onClick.AddListener(OnLeavePressed);
+        winAppearCoundown = 0;
         _canvasGroup.UpdateState(false, 0);
     }
     internal void BringIn(string name)
@@ -39,5 +41,14 @@ public class GameWinPanel : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         PhotonNetwork.LoadLevel("Lobby");
+    }
+
+    internal void UpdateWinAppearCoundown()
+    {
+        winAppearCoundown++;
+    }
+    internal int GetWinAppearCoundown()
+    {
+        return winAppearCoundown;
     }
 }

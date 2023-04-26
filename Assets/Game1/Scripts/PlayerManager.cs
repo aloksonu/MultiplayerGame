@@ -44,6 +44,7 @@ public class PlayerManager : MonoBehaviour
             || other.gameObject.GetComponent<GoalName>().name == "Five")
         {
             other.gameObject.SetActive(false);
+            GameWinPanel.Instance.UpdateWinAppearCoundown();
             UpdateScore();
         }
     }
@@ -52,7 +53,7 @@ public class PlayerManager : MonoBehaviour
     {
         PlayerScore.Instance.UpdateScore(1);
 
-        if (PlayerScore.Instance.GetScore() >= 3)
+        if (PlayerScore.Instance.GetScore() >= 3 && GameWinPanel.Instance.GetWinAppearCoundown()>=5)
         {
             Debug.Log("Player Win");
             GameWinPanel.Instance.BringIn(playerName);
