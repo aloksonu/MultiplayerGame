@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameWinPanel : MonoBehaviourPunCallbacks
 {
-    public static GameWinPanel Instance;
+   // public static GameWinPanel Instance;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Button btnLeaveRoom;
     [SerializeField] private TextMeshProUGUI panelText;
@@ -15,8 +15,8 @@ public class GameWinPanel : MonoBehaviourPunCallbacks
 
      void Awake()
     {
-        if(Instance==null)
-        Instance = this;
+        //if(Instance==null)
+        //Instance = this;
     }
     void Start()
     {

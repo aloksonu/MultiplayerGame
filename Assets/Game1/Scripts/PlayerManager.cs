@@ -11,11 +11,14 @@ public class PlayerManager : MonoBehaviour
     private float MoveSpeed = 200f;
     private float _dirX, _dirY;
     private string playerName;
+
+    private GameWinPanel gameWinPanel;
     void Start()
     {
         playerName = GetComponentInParent<PhotonView>().Owner.NickName;
         playerNameTextMeshProUGUI.text = playerName;
         _rb = GetComponent<Rigidbody2D>();
+        gameWinPanel = GameObject.FindObjectOfType<GameWinPanel>();
     }
 
     // Update is called once per frame
@@ -23,19 +26,27 @@ public class PlayerManager : MonoBehaviour
     {
         if (GetComponentInParent<PhotonView>().IsMine)
         {
-#if UNITY_EDITOR
+            //#if UNITY_EDITOR
+            //            _dirX = Input.GetAxis("Horizontal") * Time.deltaTime;
+            //            _dirY = Input.GetAxis("Vertical") * Time.deltaTime;
+            //#else
+            //            _dirX = Input.acceleration.x*Time.deltaTime;
+            //            _dirY = Input.acceleration.y*Time.deltaTime;
+            //#endif
+
             _dirX = Input.GetAxis("Horizontal") * Time.deltaTime;
             _dirY = Input.GetAxis("Vertical") * Time.deltaTime;
-#else
-            _dirX = Input.acceleration.x*Time.deltaTime;
-            _dirY = Input.acceleration.y*Time.deltaTime;
-#endif
-
             Vector2 velocityVector = new Vector2(_dirX * MoveSpeed, _dirY * MoveSpeed);
             _rb.velocity = velocityVector;
-        }
-    }
 
+            //CheckWinCondition();
+        }
+       
+    }
+    private void Update()
+    {
+        CheckWinCondition();
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         //if (LevelPanel.Instance.levelName == "Receiving" && subLevelNumber == other.gameObject.GetComponent<SubLevelName>().subLevelNumber)
@@ -44,19 +55,20 @@ public class PlayerManager : MonoBehaviour
             || other.gameObject.GetComponent<GoalName>().name == "Five")
         {
             other.gameObject.SetActive(false);
-            GameWinPanel.Instance.UpdateWinAppearCoundown();
-            UpdateScore();
+            gameWinPanel.UpdateWinAppearCoundown();
+            if (GetComponentInParent<PhotonView>().IsMine)
+                PlayerScore.Instance.UpdateScore(1);
         }
     }
 
-    private void UpdateScore()
+    private void CheckWinCondition()
     {
-        PlayerScore.Instance.UpdateScore(1);
+        //PlayerScore.Instance.UpdateScore(1);
 
-        if (PlayerScore.Instance.GetScore() >= 3 && GameWinPanel.Instance.GetWinAppearCoundown()>=5)
+        if (PlayerScore.Instance.GetScore() >= 3 && gameWinPanel.GetWinAppearCoundown()>=5)
         {
             Debug.Log("Player Win");
-            GameWinPanel.Instance.BringIn(playerName);
+            gameWinPanel.BringIn(playerName);
         }
     }
 
