@@ -10,9 +10,11 @@ public class PlayerManager : MonoBehaviour
     private Rigidbody2D _rb;
     private float MoveSpeed = 200f;
     private float _dirX, _dirY;
+    private string playerName;
     void Start()
     {
-        playerNameTextMeshProUGUI.text = GetComponentInParent<PhotonView>().Owner.NickName;
+        playerName = GetComponentInParent<PhotonView>().Owner.NickName;
+        playerNameTextMeshProUGUI.text = playerName;
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -42,7 +44,19 @@ public class PlayerManager : MonoBehaviour
             || other.gameObject.GetComponent<GoalName>().name == "Five")
         {
             other.gameObject.SetActive(false);
-            PlayerScore.Instance.UpdateScore(1);
+            UpdateScore();
         }
     }
+
+    private void UpdateScore()
+    {
+        PlayerScore.Instance.UpdateScore(1);
+
+        if (PlayerScore.Instance.GetScore() >= 3)
+        {
+            Debug.Log("Player Win");
+            GameWinPanel.Instance.BringIn(playerName);
+        }
     }
+
+   }
