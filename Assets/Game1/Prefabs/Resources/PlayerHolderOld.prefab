@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f41d0c506ffb1b04481beb4288af7e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 1564716506}
+  _canvas: {fileID: 0}
   btnLeaveRoom: {fileID: 3199123800729185568}
   panelText: {fileID: 1997499157}
 --- !u!1 &1997499155
@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameTextMeshProUGUI: {fileID: 5416478449680846365}
+  scoreText: {fileID: 4806034978355219916}
 --- !u!114 &9107490006696777558
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameTextMeshProUGUI: {fileID: 5342339821353988057}
+  scoreText: {fileID: 4880363682951097352}
 --- !u!114 &9181909834204165778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,7 +649,6 @@ GameObject:
   - component: {fileID: 4880363683353624202}
   - component: {fileID: 4880363683353624200}
   - component: {fileID: 4880363683353624201}
-  - component: {fileID: 4880363683353624207}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -715,19 +715,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4880363683353624207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4880363683353624203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b68a5697e97243499f3e47731d0e409, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreTextMeshProUGUI: {fileID: 4880363682951097352}
 --- !u!1 &4880363684158308086
 GameObject:
   m_ObjectHideFlags: 0

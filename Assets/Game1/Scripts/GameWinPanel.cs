@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameWinPanel : MonoBehaviourPunCallbacks
 {
    // public static GameWinPanel Instance;
-    [SerializeField] private CanvasGroup _canvasGroup;
+    [SerializeField] private Canvas _canvas;
     [SerializeField] private Button btnLeaveRoom;
     [SerializeField] private TextMeshProUGUI panelText;
     private float _fadeDuration = 0.2f;
@@ -22,16 +22,16 @@ public class GameWinPanel : MonoBehaviourPunCallbacks
     {
         btnLeaveRoom.onClick.AddListener(OnLeavePressed);
         winAppearCoundown = 0;
-        _canvasGroup.UpdateState(false, 0);
+        _canvas.transform.gameObject.SetActive(false);
     }
     internal void BringIn(string name)
     {
          panelText.text = name + "Won!";
-        _canvasGroup.UpdateState(true, _fadeDuration);
+        _canvas.transform.gameObject.SetActive(true);
     }
     internal void BringOut()
     {
-        _canvasGroup.UpdateState(false, _fadeDuration);
+        _canvas.transform.gameObject.SetActive(false);
     }
 
     internal void OnLeavePressed()

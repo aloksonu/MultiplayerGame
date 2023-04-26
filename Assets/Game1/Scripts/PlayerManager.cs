@@ -11,10 +11,13 @@ public class PlayerManager : MonoBehaviour
     private float MoveSpeed = 200f;
     private float _dirX, _dirY;
     private string playerName;
-
+    public TMP_Text scoreText;
+    int score;
     private GameWinPanel gameWinPanel;
     void Start()
     {
+        score = 0;
+        scoreText.text = score.ToString();
         playerName = GetComponentInParent<PhotonView>().Owner.NickName;
         playerNameTextMeshProUGUI.text = playerName;
         _rb = GetComponent<Rigidbody2D>();
@@ -43,29 +46,29 @@ public class PlayerManager : MonoBehaviour
         }
        
     }
-    private void Update()
-    {
-        CheckWinCondition();
-    }
+    //private void Update()
+    //{
+    //    CheckWinCondition();
+    //}
     void OnTriggerEnter2D(Collider2D other)
-    {
-        //if (LevelPanel.Instance.levelName == "Receiving" && subLevelNumber == other.gameObject.GetComponent<SubLevelName>().subLevelNumber)
+    { 
         if (other.gameObject.GetComponent<GoalName>().name=="One" || other.gameObject.GetComponent<GoalName>().name == "Two"
             ||other.gameObject.GetComponent<GoalName>().name == "Three" || other.gameObject.GetComponent<GoalName>().name == "Four"
             || other.gameObject.GetComponent<GoalName>().name == "Five")
         {
-            other.gameObject.SetActive(false);
+           // other.gameObject.SetActive(false);
             gameWinPanel.UpdateWinAppearCoundown();
-            if (GetComponentInParent<PhotonView>().IsMine)
-                PlayerScore.Instance.UpdateScore(1);
+           // if (GetComponentInParent<PhotonView>().IsMine)
+              //  PlayerScore.Instance.UpdateScore(1);
         }
     }
 
-    private void CheckWinCondition()
+    internal void CheckWinCondition()
     {
-        //PlayerScore.Instance.UpdateScore(1);
+        score++;
+        scoreText.text = score.ToString();
 
-        if (PlayerScore.Instance.GetScore() >= 3 && gameWinPanel.GetWinAppearCoundown()>=5)
+        if (score >= 3 && gameWinPanel.GetWinAppearCoundown()>=5)
         {
             Debug.Log("Player Win");
             gameWinPanel.BringIn(playerName);
