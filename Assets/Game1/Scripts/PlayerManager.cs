@@ -46,10 +46,14 @@ public class PlayerManager : MonoBehaviour
         }
        
     }
-    //private void Update()
-    //{
-    //    CheckWinCondition();
-    //}
+    private void Update()
+    {
+        if (score >= 3 && gameWinPanel.GetWinAppearCoundown() >= 5)
+        {
+            Debug.Log("Player Win");
+            gameWinPanel.BringIn(playerName);
+        }
+    }
     void OnTriggerEnter2D(Collider2D other)
     { 
         if (other.gameObject.GetComponent<GoalName>().name=="One" || other.gameObject.GetComponent<GoalName>().name == "Two"
