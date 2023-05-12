@@ -8,6 +8,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Button btnRoom, btnQuit;
     [SerializeField] private TMP_InputField userNameIputFeild;
+    private int minimumPlayerCount = 2;
     void Start()
     {
         btnRoom.onClick.AddListener(JoinOrCreateRoom);
@@ -34,8 +35,24 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("Game");
+        if (PhotonNetwork.CurrentRoom.PlayerCount >= minimumPlayerCount)
+        {
+            PhotonNetwork.LoadLevel("Game");
+        }
+        else
+        {
+            Debug.Log("Waiting for another player to join...");
+        }
     }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount >= minimumPlayerCount)
+        {
+            PhotonNetwork.LoadLevel("Game");
+        }
+    }
+
     private void OnQuitButtonPressed()
     {
         Application.Quit();
