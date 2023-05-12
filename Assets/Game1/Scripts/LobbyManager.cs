@@ -38,10 +38,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount >= minimumPlayerCount)
         {
             PhotonNetwork.LoadLevel("Game");
+            //PlayerWaitingPanel.Instance.BringOut();
         }
         else
         {
-            Debug.Log("Waiting for another player to join...");
+            // Debug.Log("Waiting for another player to join...");
+            PlayerWaitingPanel.Instance.BringIn();
         }
     }
 
@@ -50,6 +52,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount >= minimumPlayerCount)
         {
             PhotonNetwork.LoadLevel("Game");
+            //PlayerWaitingPanel.Instance.BringOut();
         }
     }
 
