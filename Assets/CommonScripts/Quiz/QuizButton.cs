@@ -1,12 +1,9 @@
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Utilities;
 
-
-namespace GamePlay.Quiz
+namespace CommonScripts.Quiz
 {
     public class QuizButton : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
     {

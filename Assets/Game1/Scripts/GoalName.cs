@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class GoalName : MonoBehaviour
+namespace Game1.Scripts
 {
-    public string name;
-    private GameWinPanel gameWinPanel;
-    void Start()
+    public class GoalName : MonoBehaviour
     {
-        gameWinPanel = GameObject.FindObjectOfType<GameWinPanel>();
-    }
+        public string name;
+        private GameWinPanel gameWinPanel;
+        void Start()
+        {
+            gameWinPanel = GameObject.FindObjectOfType<GameWinPanel>();
+        }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        //gameWinPanel.UpdateWinAppearCoundown();
-        other.GetComponent<PlayerManager>().CheckWinCondition();
-        this.gameObject.SetActive(false);
-    }
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            //gameWinPanel.UpdateWinAppearCoundown();
+            other.GetComponent<PlayerManager>().CheckWinCondition();
+            this.gameObject.SetActive(false);
+        }
 
- }
+    }
+}

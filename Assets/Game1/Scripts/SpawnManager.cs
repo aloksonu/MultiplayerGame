@@ -1,11 +1,14 @@
-using UnityEngine;
 using Photon.Pun;
+using UnityEngine;
 
-public class SpawnManager : MonoBehaviourPunCallbacks
+namespace Game1.Scripts
 {
-    public GameObject playerPrefab;
-    void Start()
+    public class SpawnManager : MonoBehaviourPunCallbacks
     {
-        PhotonNetwork.Instantiate(playerPrefab.name, transform.position, transform.rotation);
+        public GameObject playerPrefab;
+        void Start()
+        {
+            PhotonNetwork.Instantiate(playerPrefab.name, transform.position, transform.rotation);
+        }
     }
 }

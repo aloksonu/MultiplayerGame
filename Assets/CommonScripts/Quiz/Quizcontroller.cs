@@ -1,10 +1,10 @@
 using System;
-using Ui.ScoreSystem;
+using CommonScripts.Score;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
 
-namespace GamePlay.Quiz
+namespace CommonScripts.Quiz
 {
     public class Quizcontroller : MonoSingleton<Quizcontroller>
     {

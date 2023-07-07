@@ -1,29 +1,32 @@
-using UnityEngine;
 using Photon.Pun;
+using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace Game1.Scripts
 {
-
-    //void Start()
-    //{
-    //    GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
-    //    foreach (GameObject player in cameras)
-    //    {
-    //        if (PhotonView.Get(player).IsMine == false)
-    //        {
-    //            Destroy(player.GetComponent<CameraController>().gameObject);
-    //        }
-    //    }
-    //}
-
-    void Start()
+    public class CameraController : MonoBehaviour
     {
-        GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
-        foreach (GameObject player in cameras)
+
+        //void Start()
+        //{
+        //    GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
+        //    foreach (GameObject player in cameras)
+        //    {
+        //        if (PhotonView.Get(player).IsMine == false)
+        //        {
+        //            Destroy(player.GetComponent<CameraController>().gameObject);
+        //        }
+        //    }
+        //}
+
+        void Start()
         {
-            if (PhotonView.Get(player).IsMine == false)
+            GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
+            foreach (GameObject player in cameras)
             {
-                Destroy(player.GetComponent<CameraController>().gameObject);
+                if (PhotonView.Get(player).IsMine == false)
+                {
+                    Destroy(player.GetComponent<CameraController>().gameObject);
+                }
             }
         }
     }
